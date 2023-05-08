@@ -1,0 +1,21 @@
+{
+    "name": "WeatherWear, Jr",
+    "short_name": "WeatherWearJr",
+    "icons": [
+      {
+        "src": "images/wwjr.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "images/wwjr.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "index.ejs",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#D3D3D3"
+  }
+  

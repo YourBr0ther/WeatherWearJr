@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather and Clothing Recommendations</title>
+  <style>
+    table {
+      width: 50%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weather and Clothing Recommendations</h1>
+  <button id="toggleTemperature">Toggle Temperature (°F/°C)</button>
+  <h2>Weather Information</h2>
+  <table id="weatherTable">
+    <tr>
+      <th>Temperature</th>
+      <th>Rain (%)</th>
+      <th>Currently Raining</th>
+    </tr>
+    <tr>
+        <td data-celsius="<%= weatherData.currentWeather.temperatureC %>"><%= weatherData.currentWeather.temperatureF.toFixed(1) %>°<span class="temp-unit">F</span></td>
+        <td><%= weatherData.currentWeather.rain !== 'No rain' ? weatherData.currentWeather.rain : '0' %></td>
+      <td><%= weatherData.currentWeather.rain !== 'No rain' ? 'Yes' : 'No' %></td>
+    </tr>
+  </table>
+  <h2>Clothing Recommendations</h2>
+  <table>
+    <tr>
+      <th>Outerwear</th>
+      <th>Tops</th>
+      <th>Bottoms</th>
+      <th>Footwear</th>
+    </tr>
+    <tr>
+      <td><%= recommendations.outerwear.join(', ') %></td>
+      <td><%= recommendations.tops.join(', ') %></td>
+      <td><%= recommendations.bottoms.join(', ') %></td>
+      <td><%= recommendations.footwear.join(', ') %></td>
+    </tr>
+  </table>
+  <script src="/scripts/scripts.js"></script>
+</body>
+</html>
