@@ -1,0 +1,12 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "A fun app for kids to figure out what they should wear based on local weather",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm start",
+    "start": "node server.js"
+  },
+  "author": "YOurBr0ther",
+  "license": "ISC"
+}
