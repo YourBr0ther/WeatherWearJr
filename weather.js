@@ -20,12 +20,12 @@ async function fetchWeatherData() {
             temperatureC: oneCallResponse.data.current.temp,
             temperatureF: (oneCallResponse.data.current.temp * 9 / 5) + 32,
             description: oneCallResponse.data.current.weather[0].description,
-            rain: oneCallResponse.data.current.rain || 'No rain',
+            rain: oneCallResponse.data.current.rain ? (oneCallResponse.data.current.rain * 100) + '%' : 'No rain',
         };
-
+        
         const dailyWeather = {
             description: oneCallResponse.data.daily[0].weather[0].description,
-            rain: oneCallResponse.data.daily[0].rain || 'No rain',
+            rain: oneCallResponse.data.daily[0].rain ? (oneCallResponse.data.daily[0].rain * 100) + '%' : 'No rain',
             highTemp: (oneCallResponse.data.daily[0].temp.max * 9 / 5) + 32, // daily high temperature in Fahrenheit
             lowTemp: (oneCallResponse.data.daily[0].temp.min * 9 / 5) + 32, // daily low temperature in Fahrenheit
         };

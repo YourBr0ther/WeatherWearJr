@@ -63,7 +63,7 @@
         <%= weatherData.dailyWeather.lowTemp.toFixed(1) %>°F
       </td>
       <td>
-        <%= weatherData.currentWeather.rain !=='No rain' ? weatherData.currentWeather.rain : '0' %>
+        <%= weatherData.currentWeather.rain !=='No rain' ? weatherData.currentWeather.rain + '%' : '0' %>
       </td>
       <td>
         <%= weatherData.currentWeather.rain !=='No rain' ? 'Yes' : 'No' %>
