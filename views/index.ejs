@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +9,65 @@
     table {
       width: 50%;
       border-collapse: collapse;
+      margin: auto;
+      /* this will center the table itself */
     }
-    th, td {
+
+    th,
+    td {
       border: 1px solid black;
       padding: 8px;
-      text-align: left;
+      text-align: center;
+      /* this centers the content of each cell */
     }
+
     th {
       background-color: #f2f2f2;
     }
+
+    .img-clothing {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: auto;
+      /* this will center the image within its cell */
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+      /* this will center the headers */
+    }
   </style>
 </head>
+
 <body>
   <h1>Weather and Clothing Recommendations</h1>
-  <button id="toggleTemperature">Toggle Temperature (°F/°C)</button>
   <h2>Weather Information</h2>
   <table id="weatherTable">
     <tr>
       <th>Temperature</th>
+      <th>High Temperature</th>
+      <th>Low Temperature</th>
       <th>Rain (%)</th>
       <th>Currently Raining</th>
     </tr>
     <tr>
-        <td data-celsius="<%= weatherData.currentWeather.temperatureC %>"><%= weatherData.currentWeather.temperatureF.toFixed(1) %>°<span class="temp-unit">F</span></td>
-        <td><%= weatherData.currentWeather.rain !== 'No rain' ? weatherData.currentWeather.rain : '0' %></td>
-      <td><%= weatherData.currentWeather.rain !== 'No rain' ? 'Yes' : 'No' %></td>
+      <td data-celsius="<%= weatherData.currentWeather.temperatureC %>">
+        <%= weatherData.currentWeather.temperatureF.toFixed(1) %>°<span class="temp-unit">F</span>
+      </td>
+      <td>
+        <%= weatherData.dailyWeather.highTemp.toFixed(1) %>°F
+      </td>
+      <td>
+        <%= weatherData.dailyWeather.lowTemp.toFixed(1) %>°F
+      </td>
+      <td>
+        <%= weatherData.currentWeather.rain !=='No rain' ? weatherData.currentWeather.rain : '0' %>
+      </td>
+      <td>
+        <%= weatherData.currentWeather.rain !=='No rain' ? 'Yes' : 'No' %>
+      </td>
     </tr>
   </table>
   <h2>Clothing Recommendations</h2>
@@ -44,12 +79,19 @@
       <th>Footwear</th>
     </tr>
     <tr>
-      <td><%= recommendations.outerwear.join(', ') %></td>
-      <td><%= recommendations.tops.join(', ') %></td>
-      <td><%= recommendations.bottoms.join(', ') %></td>
-      <td><%= recommendations.footwear.join(', ') %></td>
+      <td><img class="img-clothing" src="<%= images.outerwear[0] %>" alt="Outerwear"></td>
+      <td><img class="img-clothing" src="<%= images.tops[0] %>" alt="Tops"></td>
+      <td><img class="img-clothing" src="<%= images.bottoms[0] %>" alt="Bottoms"></td>
+      <td><img class="img-clothing" src="<%= images.footwear[0] %>" alt="Footwear"></td>
     </tr>
-  </table>
+    <tr>
+      <td>
+        <%= recommendations.outerwear.join(', ') %></td>
+    <td><%= recommendations.tops.join(' , ') %></td>
+    <td><%= recommendations.bottoms.join(' , ') %></td>
+    <td><%= recommendations.footwear.join(' , ') %></td>
+  </tr>
+</table>
   <script src="/scripts/scripts.js"></script>
 </body>
 </html>

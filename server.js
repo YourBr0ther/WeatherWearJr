@@ -12,11 +12,11 @@ app.use('/scripts/scripts.js', express.static(path.join(__dirname, 'public', 'sc
 app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
-    const weatherData = await fetchWeatherData();
-    const recommendations = suggestClothing(weatherData);
-    res.render('index', { recommendations: recommendations, weatherData: weatherData });
-  });
-  
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
+  const weatherData = await fetchWeatherData();
+  const { recommendations, images } = suggestClothing(weatherData);
+  res.render('index', { recommendations, images, weatherData });
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
