@@ -1,9 +1,9 @@
-console.clear()
+console.clear();
 require('dotenv').config();
 const { fetchWeatherData, suggestClothing } = require('./weather');
 const express = require('express');
 const app = express();
-const port = process.env.port || 3001;
+const port = process.env.PORT || 3001;
 
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
   const weatherData = await fetchWeatherData();
-  const { recommendations, images } = suggestClothing(weatherData);
+  const { recommendations, images, chanceOfRain } = suggestClothing(weatherData);
   res.render('index', { recommendations, images, weatherData });
 });
 

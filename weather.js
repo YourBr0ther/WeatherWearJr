@@ -20,20 +20,41 @@ async function fetchWeatherData() {
             temperatureC: oneCallResponse.data.current.temp,
             temperatureF: (oneCallResponse.data.current.temp * 9 / 5) + 32,
             description: oneCallResponse.data.current.weather[0].description,
-            rain: oneCallResponse.data.current.rain ? (oneCallResponse.data.current.rain * 100) + '%' : 'No rain',
+            rain: oneCallResponse.data.current.rain ? (oneCallResponse.data.current.rain['1h'] * 100) + '%' : 'No rain',
         };
-        
+
+        // Get the high and low temperature for the day
+        const highTemp = oneCallResponse.data.daily[0].temp.max;
+        const lowTemp = oneCallResponse.data.daily[0].temp.min;
+
         const dailyWeather = {
-            description: oneCallResponse.data.daily[0].weather[0].description,
-            rain: oneCallResponse.data.daily[0].rain ? (oneCallResponse.data.daily[0].rain * 100) + '%' : 'No rain',
-            highTemp: (oneCallResponse.data.daily[0].temp.max * 9 / 5) + 32, // daily high temperature in Fahrenheit
-            lowTemp: (oneCallResponse.data.daily[0].temp.min * 9 / 5) + 32, // daily low temperature in Fahrenheit
+            highTemp: (highTemp * 9 / 5) + 32,  // Convert high temperature to Fahrenheit
+            lowTemp: (lowTemp * 9 / 5) + 32,
+            hourlyForecast: oneCallResponse.data.hourly.map(hourlyData => ({
+                precipitation: hourlyData.precipitation ? hourlyData.precipitation['1h'] : 0
+            }))
         };
+
+        // Calculate the chance of rain
+        let totalRainyHours = 0;
+
+        // Iterate through the daily weather data
+        for (const hourly of dailyWeather.hourlyForecast) {
+            if (hourly.precipitation > 0) {
+                totalRainyHours++;
+            }
+        }
+
+        const chanceOfRain = totalRainyHours > 0 ? (totalRainyHours / dailyWeather.hourlyForecast.length) * 100 : 0;
+
+        console.log('Total Rainy Hours:', totalRainyHours);
+        console.log('Chance of Rain:', chanceOfRain + '%');
 
         const weatherData = {
             city: CITY,
             currentWeather,
             dailyWeather,
+            chanceOfRain,
             timestamp: new Date(),
         };
 
@@ -47,7 +68,7 @@ async function fetchWeatherData() {
 
 // Function to suggest clothing options based on the weather data
 function suggestClothing(weatherData) {
-    const { currentWeather, dailyWeather } = weatherData;
+    const { currentWeather, chanceOfRain } = weatherData;
 
     const recommendations = {
         outerwear: [],
@@ -74,30 +95,32 @@ function suggestClothing(weatherData) {
         'shorts': '/images/shorts.png',
         'rain boots': '/images/rain_boots.png',
         'closed-toe shoes': '/images/closed_toe_shoes.png',
-        'sandals': '/images/sandals.png',
-        'N/A': '/images/na.png', // Make sure to add this line
+        'N/A': '/images/na.png'
     };
 
     // Outerwear suggestions
-    if (currentWeather.rain !== 'No rain') {
+    if (chanceOfRain > 50) {
         recommendations.outerwear.push('raincoat');
         images.outerwear.push(clothingImages['raincoat']);
-    } else if (currentWeather.temperature >= 0 && currentWeather.temperature < 10) {
+    } else if (currentWeather.temperatureC >= 0 && currentWeather.temperatureC < 10) {
         recommendations.outerwear.push('light jacket');
         images.outerwear.push(clothingImages['light jacket']);
-    } else if (currentWeather.temperature < 0) {
+    } else if (currentWeather.temperatureC < 0) {
         recommendations.outerwear.push('heavy jacket');
         images.outerwear.push(clothingImages['heavy jacket']);
     } else {
         recommendations.outerwear.push('N/A');
-        images.outerwear.push(clothingImages['N/A']); // Add the 'N/A' image
+        images.outerwear.push(clothingImages['N/A']);
     }
 
     // Tops suggestions
-    if (currentWeather.temperature < 10) {
+    if (chanceOfRain > 50) {
+        recommendations.tops.push('raincoat');
+        images.tops.push(clothingImages['raincoat']);
+    } else if (currentWeather.temperatureC < 10) {
         recommendations.tops.push('warm sweater');
         images.tops.push(clothingImages['warm sweater']);
-    } else if (currentWeather.temperature >= 10 && currentWeather.temperature < 20) {
+    } else if (currentWeather.temperatureC >= 10 && currentWeather.temperatureC < 20) {
         recommendations.tops.push('long-sleeve shirt');
         images.tops.push(clothingImages['long-sleeve shirt']);
     } else {
@@ -106,7 +129,10 @@ function suggestClothing(weatherData) {
     }
 
     // Bottoms suggestions
-    if (currentWeather.temperature < 15) {
+    if (chanceOfRain > 50) {
+        recommendations.bottoms.push('raincoat');
+        images.bottoms.push(clothingImages['raincoat']);
+    } else if (currentWeather.temperatureC < 15) {
         recommendations.bottoms.push('pants');
         images.bottoms.push(clothingImages['pants']);
     } else {
@@ -115,15 +141,12 @@ function suggestClothing(weatherData) {
     }
 
     // Footwear suggestions
-    if (currentWeather.rain !== 'No rain') {
+    if (chanceOfRain > 50) {
         recommendations.footwear.push('rain boots');
         images.footwear.push(clothingImages['rain boots']);
-    } else if (currentWeather.temperature < 15) {
+    } else {
         recommendations.footwear.push('closed-toe shoes');
         images.footwear.push(clothingImages['closed-toe shoes']);
-    } else {
-        recommendations.footwear.push('sandals');
-        images.footwear.push(clothingImages['sandals']);
     }
 
     console.log('Clothing recommendations:', recommendations);
@@ -139,13 +162,11 @@ setInterval(async () => {
 
 }, 60 * 60 * 1000); // 60 minutes * 60 seconds * 1000 milliseconds
 
-// Fetch weather data and suggest clothing options once when the application starts
-(async () => {
-    const weatherData = await fetchWeatherData();
-    console.log('[Hourly Update] Weather data:', JSON.stringify(weatherData));
-    suggestClothing(weatherData);
-
-})();
+fetchWeatherData()
+    .then(weatherData => {
+        const clothingSuggestions = suggestClothing(weatherData);
+        console.log(clothingSuggestions);
+    });
 
 module.exports = {
     fetchWeatherData,
