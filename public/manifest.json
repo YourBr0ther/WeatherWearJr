@@ -3,12 +3,17 @@
     "short_name": "WeatherWearJr",
     "icons": [
       {
-        "src": "images/wwjr.png",
+        "src": "images/wwjr-192.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "images/wwjr.png",
+        "src": "images/wwjr-256.png",
+        "type": "image/png",
+        "sizes": "256x256"
+      },
+      {
+        "src": "images/wwjr-512.png",
         "type": "image/png",
         "sizes": "512x512"
       }
