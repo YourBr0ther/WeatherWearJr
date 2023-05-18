@@ -56,13 +56,13 @@
     </tr>
     <tr>
       <td data-celsius="<%= weatherData.currentWeather.temperatureC %>">
-        <%= weatherData.currentWeather.temperatureF %>°<span class="temp-unit">F</span>
+        <%= weatherData.currentWeather.temperatureF.toFixed(0) %>°<span class="temp-unit">F</span>
       </td>
       <td>
-        <%= weatherData.dailyWeather.highTemp %>°F
+        <%= weatherData.dailyWeather.highTemp.toFixed(0) %>°F
       </td>
       <td>
-        <%= weatherData.dailyWeather.lowTemp %>°F
+        <%= weatherData.dailyWeather.lowTemp.toFixed(0) %>°F
       </td>
       <td>
         <%= weatherData.chanceOfRain %>%
