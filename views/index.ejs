@@ -31,8 +31,7 @@
       height: 100px;
       object-fit: contain;
       margin: auto;
-      image-rendering: pixelated;
-      /* this will center the image within its cell */
+image-rendering: crisp-edges;
     }
 
     h1,
@@ -78,20 +77,20 @@
       <th>Outerwear</th>
       <th>Tops</th>
       <th>Bottoms</th>
-      <th>Footwear</th>
+      <th>Shoes</th>
     </tr>
     <tr>
       <td><img class="img-clothing" src="<%= images.outerwear[0] %>" alt="Outerwear"></td>
       <td><img class="img-clothing" src="<%= images.tops[0] %>" alt="Tops"></td>
       <td><img class="img-clothing" src="<%= images.bottoms[0] %>" alt="Bottoms"></td>
-      <td><img class="img-clothing" src="<%= images.footwear[0] %>" alt="Footwear"></td>
+      <td><img class="img-clothing" src="<%= images.shoes[0] %>" alt="Footwear"></td>
     </tr>
     <tr>
       <td>
         <%= recommendations.outerwear.join(', ') %></td>
       <td><%= recommendations.tops.join(', ') %></td>
       <td><%= recommendations.bottoms.join(', ') %></td>
-      <td><%= recommendations.footwear.join(', ') %></td>
+      <td><%= recommendations.shoes.join(', ') %></td>
     </tr>
   </table>
   <script src="/scripts/scripts.js"></script>
