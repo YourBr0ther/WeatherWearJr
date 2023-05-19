@@ -10,6 +10,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/scripts/scripts.js', express.static(path.join(__dirname, 'public', 'scripts', 'scripts.js')));
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
 
 app.get('/', async (req, res) => {
   const weatherData = await fetchWeatherData();
