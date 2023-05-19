@@ -8,10 +8,9 @@
   <title>WeatherWear Jr</title>
   <style>
     table {
-      width: 50%;
+      width: calc(100vw - 10px);
       border-collapse: collapse;
-      margin: auto;
-      /* this will center the table itself */
+      margin: 1em auto;
     }
 
     th,
@@ -27,11 +26,11 @@
     }
 
     .img-clothing {
-      width: 100px;
-      height: 100px;
+      width: calc(20vw - 10px);  /* Change the percentage based on your layout */
+      height: auto;
       object-fit: contain;
       margin: auto;
-image-rendering: crisp-edges;
+      image-rendering: crisp-edges;
     }
 
     h1,
@@ -47,11 +46,11 @@ image-rendering: crisp-edges;
   <h2>Weather Information</h2>
   <table id="weatherTable">
     <tr>
-      <th>Temperature</th>
-      <th>High Temperature</th>
-      <th>Low Temperature</th>
+      <th>Temp</th>
+      <th>Temp (H)</th>
+      <th>Temp (L)</th>
       <th>Rain (%)</th>
-      <th>Currently Raining</th>
+      <th>Raining?</th>
     </tr>
     <tr>
       <td data-celsius="<%= weatherData.currentWeather.temperatureC %>">
@@ -67,7 +66,7 @@ image-rendering: crisp-edges;
         <%= weatherData.chanceOfRain %>%
       </td>
       <td>
-        <%= weatherData.currentWeather.rain !== 'No rain' ? 'Yes' : 'No' %>
+        <%= weatherData.currentWeather.rain !=='No rain' ? 'Yes' : 'No' %>
       </td>
     </tr>
   </table>
@@ -88,9 +87,9 @@ image-rendering: crisp-edges;
     <tr>
       <td>
         <%= recommendations.outerwear.join(', ') %></td>
-      <td><%= recommendations.tops.join(', ') %></td>
-      <td><%= recommendations.bottoms.join(', ') %></td>
-      <td><%= recommendations.shoes.join(', ') %></td>
+      <td><%= recommendations.tops.join(' , ') %></td>
+      <td><%= recommendations.bottoms.join(' , ') %></td>
+      <td><%= recommendations.shoes.join(' , ') %></td>
     </tr>
   </table>
   <script src="/scripts/scripts.js"></script>
