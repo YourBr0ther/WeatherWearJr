@@ -58,6 +58,8 @@ async function fetchWeatherData() {
 function suggestClothing(weatherData) {
     const { highTemp, lowTemp, chanceOfRain } = weatherData;
 
+    console.log(highTemp)
+
     const recommendations = {
         outerwear: [],
         tops: [],
@@ -86,7 +88,7 @@ function suggestClothing(weatherData) {
         'N/A': '/images/na.png'
     };
 
-    if (highTemp > 75 && lowTemp > 65) {
+    if (highTemp > 75) {
         if (chanceOfRain > 50) {
             recommendations.outerwear.push('raincoat');
             recommendations.tops.push('short-sleeve shirt');
@@ -98,7 +100,7 @@ function suggestClothing(weatherData) {
             recommendations.bottoms.push('shorts');
             recommendations.shoes.push('tennis shoes');
         }
-    } else if (highTemp <= 75 && lowTemp <= 65 && highTemp > 60 && lowTemp > 50) {
+    } else if (highTemp <= 75 && highTemp > 60) {
         if (chanceOfRain > 50) {
             recommendations.outerwear.push('raincoat');
             recommendations.tops.push('short-sleeve shirt');
@@ -110,7 +112,7 @@ function suggestClothing(weatherData) {
             recommendations.bottoms.push('shorts');
             recommendations.shoes.push('tennis shoes');
         }
-    } else if (highTemp <= 60 && lowTemp <= 50 && highTemp > 45 && lowTemp > 35) {
+    } else if (highTemp <= 60 && highTemp > 45) {
         if (chanceOfRain > 50) {
             recommendations.outerwear.push('raincoat');
             recommendations.tops.push('long-sleeve shirt');
@@ -122,7 +124,7 @@ function suggestClothing(weatherData) {
             recommendations.bottoms.push('pants');
             recommendations.shoes.push('tennis shoes');
         }
-    } else if (highTemp <= 45 && lowTemp <= 35) {  // updated threshold for heavy jacket
+    } else if (highTemp <= 45) {
         if (chanceOfRain > 50) {
             recommendations.outerwear.push('raincoat');
             recommendations.tops.push('long-sleeve shirt');
@@ -134,7 +136,8 @@ function suggestClothing(weatherData) {
             recommendations.bottoms.push('pants');
             recommendations.shoes.push('tennis shoes');
         }
-
+    } else {
+        console.log(`No recommendations`);
     }
 
     recommendations.outerwear.forEach((item, index) => {
@@ -161,6 +164,7 @@ setInterval(async () => {
 
 fetchWeatherData()
     .then(weatherData => {
+        console.log(weatherData)
         suggestClothing(weatherData);
     });
 
