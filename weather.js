@@ -57,9 +57,6 @@ async function fetchWeatherData() {
 
 function suggestClothing(weatherData) {
     const { highTemp, lowTemp, chanceOfRain } = weatherData;
-
-    console.log(highTemp)
-
     const recommendations = {
         outerwear: [],
         tops: [],
@@ -164,7 +161,6 @@ setInterval(async () => {
 
 fetchWeatherData()
     .then(weatherData => {
-        console.log(weatherData)
         suggestClothing(weatherData);
     });
 
