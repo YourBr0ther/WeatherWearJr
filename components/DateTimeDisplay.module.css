@@ -1,0 +1,30 @@
+.container {
+  text-align: center;
+  padding: 1vh 2vh;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.day {
+  font-size: clamp(1.8rem, 4vh, 2.5rem);
+  font-weight: bold;
+  color: #333;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  margin-bottom: 0.5vh;
+}
+
+.date {
+  font-size: clamp(0.9rem, 2vh, 1.3rem);
+  color: #666;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  margin-bottom: 0.5vh;
+}
+
+.time {
+  font-size: clamp(1rem, 2.5vh, 1.5rem);
+  color: #4c6ef5;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-weight: bold;
+}

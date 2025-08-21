@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
+      - WEATHER_ZIP_CODE=${WEATHER_ZIP_CODE}
+      - TEMPERATURE_UNIT=${TEMPERATURE_UNIT}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: unless-stopped

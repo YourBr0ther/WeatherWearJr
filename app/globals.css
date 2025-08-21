@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 16:9 aspect ratio container */
+.aspect-container {
+  width: 100vw;
+  height: 100vh;
+  max-width: 177.77vh; /* 16:9 ratio */
+  max-height: 56.25vw; /* 16:9 ratio */
+  margin: 0 auto;
+  position: relative;
+}

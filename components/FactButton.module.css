@@ -1,0 +1,112 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  flex-shrink: 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vh;
+  padding: 1.5vh 3vh;
+  font-size: clamp(1rem, 2.5vh, 1.3rem);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  min-height: 6vh;
+  margin: 0 auto;
+  flex-shrink: 0;
+  width: auto;
+  max-width: 80%;
+  font-weight: bold;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.speaking {
+  background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+  animation: factPulse 1.5s infinite;
+}
+
+.loading {
+  background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+  animation: factLoading 1s infinite;
+  cursor: wait;
+}
+
+.loading:hover {
+  transform: none;
+}
+
+@keyframes factPulse {
+  0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+  50% { box-shadow: 0 5px 25px rgba(232, 67, 147, 0.4); }
+  100% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+}
+
+@keyframes factLoading {
+  0% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 0.8; transform: scale(1); }
+}
+
+.icon {
+  font-size: clamp(1.4rem, 3vh, 1.8rem);
+}
+
+.text {
+  font-weight: bold;
+}
+
+.factDisplay {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2vh;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.factText {
+  font-size: clamp(1rem, 2.2vh, 1.4rem);
+  color: #333;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  line-height: 1.4;
+  margin-bottom: 1vh;
+  font-weight: bold;
+}
+
+.comeBackText {
+  font-size: clamp(0.8rem, 1.8vh, 1rem);
+  color: #666;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-style: italic;
+}
