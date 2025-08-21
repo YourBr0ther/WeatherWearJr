@@ -5,9 +5,9 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: weather-wear-jr
+    container_name: weather-wear-jr-prod
     ports:
-      - "3000:3000"
+      - "80:3000"
     environment:
       - NODE_ENV=production
       - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
@@ -21,3 +21,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
