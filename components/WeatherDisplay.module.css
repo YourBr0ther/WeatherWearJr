@@ -1,25 +1,34 @@
 .container {
   text-align: center;
   padding: 1.5vh 2vh;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .emoji {
-  font-size: clamp(4rem, 8vh, 6rem);
+  font-size: clamp(5rem, 10vh, 7rem);
   margin-bottom: 0.5vh;
   display: inline-block;
+  animation: continuousFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
 .bounce {
-  animation: bounce 1s ease-in-out;
+  animation: bounce 1s ease-in-out, continuousFloat 4s ease-in-out infinite;
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+
+@keyframes continuousFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
 .temperature {
