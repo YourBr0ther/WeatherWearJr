@@ -134,12 +134,10 @@ export default function Home() {
         <h1 className={styles.title}>Weather Wear Jr 🌈</h1>
         
         <Suspense fallback={<LoadingState />}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1vh', flex: 1, minHeight: 0, marginBottom: '2vh' }}>
-            <DateTimeDisplay />
-            <WeatherDisplay weather={weatherData.current} />
-            <ClothingRecommendation recommendation={clothing} />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5vh', width: '100%', alignItems: 'center', paddingTop: '1vh' }}>
+          <DateTimeDisplay />
+          <WeatherDisplay weather={weatherData.current} />
+          <ClothingRecommendation recommendation={clothing} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5vh', width: '100%', alignItems: 'center', marginTop: '2vh' }}>
             <SpeakButton 
               weather={weatherData.current} 
               recommendation={clothing}
