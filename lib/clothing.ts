@@ -20,8 +20,8 @@ export function getClothingRecommendation(
   if (currentTemp >= 75) {
     return {
       items: [
-        { icon: '👕', name: 'T-shirt' },
-        { icon: '🩳', name: 'Shorts' },
+        { icon: '👗', name: 'Short sleeve dress' },
+        { icon: '🩳', name: 'Shorts underneath' },
         { icon: '👟', name: 'Sneakers' },
         { icon: '🧴', name: 'Sunscreen' }
       ],
@@ -35,8 +35,8 @@ export function getClothingRecommendation(
   if (currentTemp >= 60) {
     return {
       items: [
-        { icon: '👔', name: 'Long sleeve shirt' },
-        { icon: '👖', name: 'Pants' },
+        { icon: '👗', name: 'Long sleeve dress' },
+        { icon: '👖', name: 'Pants underneath' },
         { icon: '🧥', name: 'Light jacket' },
         { icon: '👟', name: 'Sneakers' }
       ],
@@ -50,9 +50,9 @@ export function getClothingRecommendation(
   if (currentTemp >= 40) {
     return {
       items: [
+        { icon: '👗', name: 'Long sleeve dress' },
+        { icon: '👖', name: 'Warm pants underneath' },
         { icon: '🧥', name: 'Warm jacket' },
-        { icon: '👖', name: 'Long pants' },
-        { icon: '🧣', name: 'Scarf' },
         { icon: '👢', name: 'Boots' }
       ],
       advice: isLargeVariation
@@ -64,10 +64,10 @@ export function getClothingRecommendation(
   // Cold weather (<40°F)
   return {
     items: [
+      { icon: '👗', name: 'Long sleeve dress' },
+      { icon: '👖', name: 'Warm pants underneath' },
       { icon: '🧥', name: 'Winter coat' },
-      { icon: '🧤', name: 'Gloves' },
-      { icon: '🧣', name: 'Warm scarf' },
-      { icon: '👢', name: 'Winter boots' }
+      { icon: '🧤', name: 'Gloves' }
     ],
     advice: isLargeVariation
       ? "Brrr! It's cold and changing! Bundle up in warm layers!"
