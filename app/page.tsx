@@ -137,7 +137,7 @@ export default function Home() {
           <DateTimeDisplay />
           <WeatherDisplay weather={weatherData.current} />
           <ClothingRecommendation recommendation={clothing} />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5vh', width: '100%', alignItems: 'center', marginTop: '2vh' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1vh', width: '100%', alignItems: 'center', marginTop: 'auto' }}>
             <SpeakButton 
               weather={weatherData.current} 
               recommendation={clothing}
